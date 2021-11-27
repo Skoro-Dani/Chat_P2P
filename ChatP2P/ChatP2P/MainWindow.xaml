@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatP2P"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="476" Width="800">
     <Grid>
+        <Label Content="Indirizzo Ip del Destinatario" HorizontalAlignment="Left" Margin="35,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TXT_Destinatario" HorizontalAlignment="Left" Margin="211,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="TXT_MDest" HorizontalAlignment="Left" Margin="35,60,0,0" Text="-messaggio" TextWrapping="Wrap" VerticalAlignment="Top" Height="241" Width="296"/>
+        <TextBlock x:Name="TXT_MMitt" HorizontalAlignment="Left" Margin="437,60,0,0" Text="-Messaggio" TextWrapping="Wrap" VerticalAlignment="Top" Height="241" Width="296"/>
+        <TextBox x:Name="TXT_Messaggio" HorizontalAlignment="Left" Margin="437,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" Height="22"/>
+        <Label Content="Scrivere qui il messaggio da inviare:" HorizontalAlignment="Left" Margin="183,325,0,0" VerticalAlignment="Top"/>
+        <Rectangle HorizontalAlignment="Left" Height="241" Margin="35,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="311"/>
+        <Rectangle HorizontalAlignment="Left" Height="241" Margin="422,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="311"/>
+        <Button x:Name="BTTN_Collegamento" Content="Collagemento" HorizontalAlignment="Left" Margin="353,14,0,0" VerticalAlignment="Top" Width="131"/>
+        <Button x:Name="BTTN_Send" Content="Invio" HorizontalAlignment="Left" Margin="437,385,0,0" VerticalAlignment="Top" Width="296"/>
+        <Button x:Name="BTTN_ChiusuraCollegamento" Content="Esci Dalla Chat" HorizontalAlignment="Left" Margin="35,385,0,0" VerticalAlignment="Top" Width="296"/>
 
     </Grid>
 </Window>

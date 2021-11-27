@@ -23,7 +23,6 @@ namespace ChatP2P
         public MainWindow()
         {
             InitializeComponent();
-            //ciao prova 1
         }
     }
 }
