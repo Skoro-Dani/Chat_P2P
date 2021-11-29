@@ -8,6 +8,8 @@ namespace ChatP2P
     public class writer
     {
         private DatiCondivisi Dati;
+        UdpClient client = new UdpClient();
+        byte[] data;
         public writer(DatiCondivisi Dati)
         {
             this.Dati = Dati;
@@ -23,9 +25,19 @@ namespace ChatP2P
             {
                 if (Dati.getVuoleConn())
                 {
-                    UdpClient client = new UdpClient();
-                    byte[] data = Encoding.ASCII.GetBytes("C"+"127.0.0.1");
+                    data = Encoding.ASCII.GetBytes("c;"+"127.0.0.1");
                     client.Send(data, data.Length, Dati.getIpDestinatario(), 12345);
+                    Dati.setVuoleConn(false);
+                    Dati.SetaspettoRisposta(true);
+                }
+
+                if(Dati.getConnesso())
+                {
+                    if(Dati.getBoolInvioMess())
+                    {
+                        data = Encoding.ASCII.GetBytes("m;"+Dati.getMessaggioInviato());
+                        client.Send(data, data.Length, Dati.getIpDestinatario(), 12345);
+                    }
                 }
             }
         }

@@ -6,17 +6,22 @@ namespace ChatP2P
 {
     public class DatiCondivisi
     {
+        //lock
         private readonly object IpDestLock = new object();
         private readonly object MessRicLock = new object();
         private readonly object MessInviatocLock = new object();
         private readonly object ConnessoLock = new object();
         private readonly object VuoleConnessioneLock = new object();
+        private readonly object aspettoRispostaLock = new object();
+        private readonly object MessDaInviareboolLock = new object();
+        //Variabili
         private string IpDestinatario;
         private string MessaggioRicevuto;
         private string MessaggioInviato;
         private bool Connesso = false;
         private bool VuoleConnetersi = false;
-
+        private bool AspettoRisposta = false;
+        private bool MessDaInviarebool = false;
         public DatiCondivisi()
         {
             IpDestinatario = "";
@@ -103,6 +108,33 @@ namespace ChatP2P
                 VuoleConnetersi = VuoleConnesso;
             }
         }
-
+        public bool getAspettoRisposta()
+        {
+            lock (aspettoRispostaLock)
+            {
+                return AspettoRisposta;
+            }
+        }
+        public void SetaspettoRisposta(bool aspetto)
+        {
+            lock (aspettoRispostaLock)
+            {
+                AspettoRisposta = aspetto;
+            }
+        }
+        public bool getBoolInvioMess()
+        {
+            lock (MessDaInviareboolLock)
+            {
+                return MessDaInviarebool;
+            }
+        }
+        public void setBoolInvioMess(bool Invio)
+        {
+            lock (MessDaInviareboolLock)
+            {
+                MessDaInviarebool = Invio;
+            }
+        }
     }
 }
