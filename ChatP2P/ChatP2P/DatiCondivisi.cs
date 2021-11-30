@@ -19,8 +19,8 @@ namespace ChatP2P
         private string MessaggioRicevuto;
         private string MessaggioInviato;
         private bool Connesso = false;
-        private bool VuoleConnetersi = false;
-        private bool AspettoRisposta = false;
+        private bool VuoleConnetersi = false;//qualcuno vuole connetersi
+        private bool AspettoRisposta = false;//ho inviato una prova di connesione e aspetto che mi risponda
         private bool MessDaInviarebool = false;
         public DatiCondivisi()
         {
@@ -36,11 +36,18 @@ namespace ChatP2P
             MessaggioInviato = messaggioInviato;
         }
         
-        public string getIpDestinatario()
+        public string GetIpDestinatario()
         {
             lock (IpDestLock)
             {
                 return IpDestinatario;
+            }
+        }
+        public long GetIpDestinatarioLong()
+        {
+            lock (IpDestLock)
+            {
+                return long.Parse(IpDestinatario);
             }
         }
         public void setIpDestinatario(string ip)

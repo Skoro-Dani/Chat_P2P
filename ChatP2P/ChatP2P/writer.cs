@@ -5,16 +5,16 @@ using System.Text;
 
 namespace ChatP2P
 {
-    public class writer
+    public class Writer
     {
         private DatiCondivisi Dati;
         UdpClient client = new UdpClient();
-        byte[] data;
-        public writer(DatiCondivisi Dati)
+        private byte[] data;
+        public Writer(DatiCondivisi Dati)
         {
             this.Dati = Dati;
         }
-        public writer()
+        public Writer()
         {
             Dati = new DatiCondivisi();
         }
@@ -26,7 +26,7 @@ namespace ChatP2P
                 if (Dati.getVuoleConn())
                 {
                     data = Encoding.ASCII.GetBytes("c;"+"127.0.0.1");
-                    client.Send(data, data.Length, Dati.getIpDestinatario(), 12345);
+                    client.Send(data, data.Length, Dati.GetIpDestinatario(), 12345);
                     Dati.setVuoleConn(false);
                     Dati.SetaspettoRisposta(true);
                 }
@@ -36,7 +36,7 @@ namespace ChatP2P
                     if(Dati.getBoolInvioMess())
                     {
                         data = Encoding.ASCII.GetBytes("m;"+Dati.getMessaggioInviato());
-                        client.Send(data, data.Length, Dati.getIpDestinatario(), 12345);
+                        client.Send(data, data.Length, Dati.GetIpDestinatario(), 12345);
                     }
                 }
             }
