@@ -7,6 +7,7 @@ namespace ChatP2P
     public class DatiCondivisi
     {
         //variabili
+        private List<string> DaInviare;
         private List<string> client;
         private List<string> server;
         public bool Connesso { get
@@ -108,6 +109,7 @@ namespace ChatP2P
         }
 
         //lock
+        private readonly object DaInviareLock = new object();
         private readonly object clientLock = new object();
         private readonly object serverLock = new object();
         private readonly object ConnessoLock = new object();
@@ -121,11 +123,19 @@ namespace ChatP2P
         {
             client = new List<string>();
             server = new List<string>();
+            DaInviare = new List<string>();
             Connesso = false;
             AspettoRispostaConnesione = false;
             VuoleConnetersi = false;
             IpDestinatario = "";
             IpVuoleConnetersi = "";
+        }
+        public string getDaInviare(int pos)
+        {
+            lock (DaInviareLock)
+            {
+                return DaInviare[pos];
+            }
         }
 
         public string getclient(int pos)
@@ -142,7 +152,13 @@ namespace ChatP2P
                 return server[pos];
             }
         }
-
+        public int getLenghtDaInviare()
+        {
+            lock (DaInviareLock)
+            {
+                return DaInviare.Count;
+            }
+        }
         public int getLeghtclient()
         {
             lock (clientLock)

@@ -14,30 +14,18 @@ namespace ChatP2P
         {
             this.Dati = Dati;
         }
-        public Writer()
-        {
-            Dati = new DatiCondivisi();
-        }
-        
+
+
         public void ProcThread()
         {
+            int count = 0;
             while (true)
             {
-                if (Dati.getVuoleConn())
+                if (Dati.getLenghtDaInviare() > 0)
                 {
-                    data = Encoding.ASCII.GetBytes("c;"+"127.0.0.1");
-                    client.Send(data, data.Length, Dati.GetIpDestinatario(), 12345);
-                    Dati.setVuoleConn(false);
-                    Dati.SetaspettoRisposta(true);
-                }
-
-                if(Dati.getConnesso())
-                {
-                    if(Dati.getBoolInvioMess())
-                    {
-                        data = Encoding.ASCII.GetBytes("m;"+Dati.getMessaggioInviato());
-                        client.Send(data, data.Length, Dati.GetIpDestinatario(), 12345);
-                    }
+                    data = Encoding.ASCII.GetBytes(Dati.getDaInviare(count));
+                    client.Send(data, data.Length, Dati.IpDestinatario, 12345);
+                    count++;
                 }
             }
         }
