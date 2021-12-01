@@ -6,141 +6,152 @@ namespace ChatP2P
 {
     public class DatiCondivisi
     {
+        //variabili
+        private List<string> client;
+        private List<string> server;
+        public bool Connesso { get
+            {
+                lock (ConnessoLock)
+                {
+                    return Connesso;
+                }
+            } set {
+                lock (ConnessoLock)
+                {
+                    Connesso = value;
+                }
+            } }
+        public bool AspettoRispostaConnesione
+        {
+            get
+            {
+                lock (AspettoLock)
+                {
+                    return AspettoRispostaConnesione;
+                }
+            }
+            set
+            {
+                lock (AspettoLock)
+                {
+                    AspettoRispostaConnesione = value;
+                }
+            }
+        }
+        public bool VuoleConnetersi
+        {
+            get
+            {
+                lock (AspettoLock)
+                {
+                    return VuoleConnetersi;
+                }
+            }
+            set
+            {
+                lock (AspettoLock)
+                {
+                    VuoleConnetersi = value;
+                }
+            }
+        }
+        public string IpDestinatario
+        {
+            get
+            {
+                lock (IpDestLock)
+                {
+                    return IpDestinatario;
+                }
+            }
+            set
+            {
+                lock (IpDestLock)
+                {
+                    IpDestinatario = value;
+                }
+            }
+        }
+        public string IpVuoleConnetersi
+        {
+            get
+            {
+                lock (IpVuolConnLock)
+                {
+                    return IpVuoleConnetersi;
+                }
+            }
+            set
+            {
+                lock (IpVuolConnLock)
+                {
+                    IpVuoleConnetersi = value;
+                }
+            }
+        }
+
         //lock
-        private readonly object IpDestLock = new object();
-        private readonly object MessRicLock = new object();
-        private readonly object MessInviatocLock = new object();
+        private readonly object clientLock = new object();
+        private readonly object serverLock = new object();
         private readonly object ConnessoLock = new object();
-        private readonly object VuoleConnessioneLock = new object();
-        private readonly object aspettoRispostaLock = new object();
-        private readonly object MessDaInviareboolLock = new object();
-        //Variabili
-        private string IpDestinatario;
-        private string MessaggioRicevuto;
-        private string MessaggioInviato;
-        private bool Connesso = false;
-        private bool VuoleConnetersi = false;//qualcuno vuole connetersi
-        private bool AspettoRisposta = false;//ho inviato una prova di connesione e aspetto che mi risponda
-        private bool MessDaInviarebool = false;
+        private readonly object AspettoLock = new object();
+        private readonly object IpDestLock = new object();
+        private readonly object IpVuolConnLock = new object();
+
+
         public DatiCondivisi()
         {
+            client = new List<string>();
+            server = new List<string>();
+            Connesso = false;
+            AspettoRispostaConnesione = false;
+            VuoleConnetersi = false;
             IpDestinatario = "";
-            MessaggioInviato = "";
-            MessaggioRicevuto = "";
+            IpVuoleConnetersi = "";
         }
 
-        public DatiCondivisi(string ipDestinatario, string messaggioRicevuto, string messaggioInviato)
+        public string getclient(int pos)
         {
-            IpDestinatario = ipDestinatario;
-            MessaggioRicevuto = messaggioRicevuto;
-            MessaggioInviato = messaggioInviato;
-        }
-        
-        public string GetIpDestinatario()
-        {
-            lock (IpDestLock)
+            lock(clientLock)
             {
-                return IpDestinatario;
+                return client[pos];
             }
         }
-        public long GetIpDestinatarioLong()
+        public string getserver(int pos)
         {
-            lock (IpDestLock)
+            lock (serverLock)
             {
-                return long.Parse(IpDestinatario);
-            }
-        }
-        public void setIpDestinatario(string ip)
-        {
-            lock(IpDestLock)
-            {
-                IpDestinatario = ip;
+                return server[pos];
             }
         }
 
-        public string getMessaggioRicevuto()
+        public int getLeghtclient()
         {
-            lock (MessRicLock)
+            lock (clientLock)
             {
-                return MessaggioRicevuto;
+                return client.Count;
             }
         }
-        public void setMessaggioRicevuto(string MessRicevuto)
+        public int getLeghtserver()
         {
-            lock (MessRicLock)
+            lock (serverLock)
             {
-                MessaggioRicevuto = MessRicevuto;
+                return server.Count;
             }
         }
 
-        public string getMessaggioInviato()
+        public void addclient(string s)
         {
-            lock (MessInviatocLock)
+            lock (clientLock)
             {
-                return MessaggioInviato;
+                client.Add(s);
             }
         }
-        public void setMessaggioInviato(string MessDaInviare)
+        public void addserver(string s)
         {
-            lock (MessInviatocLock)
+            lock (serverLock)
             {
-                MessaggioInviato = MessDaInviare;
-            }
-        }
-        public bool getConnesso()
-        {
-            lock (ConnessoLock)
-            {
-                return Connesso;
-            }
-        }
-        public void setConnesso(bool Connesso)
-        {
-            lock (ConnessoLock)
-            {
-                this.Connesso = Connesso;
-            }
-        }
-        public bool getVuoleConn()
-        {
-            lock (VuoleConnessioneLock)
-            {
-                return VuoleConnetersi;
-            }
-        }
-        public void setVuoleConn(bool VuoleConnesso)
-        {
-            lock (VuoleConnessioneLock)
-            {
-                VuoleConnetersi = VuoleConnesso;
-            }
-        }
-        public bool getAspettoRisposta()
-        {
-            lock (aspettoRispostaLock)
-            {
-                return AspettoRisposta;
-            }
-        }
-        public void SetaspettoRisposta(bool aspetto)
-        {
-            lock (aspettoRispostaLock)
-            {
-                AspettoRisposta = aspetto;
-            }
-        }
-        public bool getBoolInvioMess()
-        {
-            lock (MessDaInviareboolLock)
-            {
-                return MessDaInviarebool;
-            }
-        }
-        public void setBoolInvioMess(bool Invio)
-        {
-            lock (MessDaInviareboolLock)
-            {
-                MessDaInviarebool = Invio;
+                server.Add(s);
             }
         }
     }
