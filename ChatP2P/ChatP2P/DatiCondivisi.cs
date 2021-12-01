@@ -38,6 +38,23 @@ namespace ChatP2P
                 }
             }
         }
+        public bool RispostaConnesione
+        {
+            get
+            {
+                lock (RispostaLock)
+                {
+                    return RispostaConnesione;
+                }
+            }
+            set
+            {
+                lock (RispostaLock)
+                {
+                    RispostaConnesione = value;
+                }
+            }
+        }
         public bool VuoleConnetersi
         {
             get
@@ -95,6 +112,7 @@ namespace ChatP2P
         private readonly object serverLock = new object();
         private readonly object ConnessoLock = new object();
         private readonly object AspettoLock = new object();
+        private readonly object RispostaLock = new object();
         private readonly object IpDestLock = new object();
         private readonly object IpVuolConnLock = new object();
 

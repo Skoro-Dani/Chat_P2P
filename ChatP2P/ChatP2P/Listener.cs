@@ -24,6 +24,7 @@ namespace ChatP2P
             {
                 dataReceived = Server.Receive(ref riceveEP);
                 string risposta = Encoding.ASCII.GetString(dataReceived);
+                Dati.addserver(risposta);
                 Console.WriteLine(risposta);
             }
         }
