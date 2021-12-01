@@ -6,108 +6,6 @@ namespace ChatP2P
 {
     public class DatiCondivisi
     {
-        //variabili
-        private List<string> DaInviare;
-        private List<string> client;
-        private List<string> server;
-        public bool Connesso { get
-            {
-                lock (ConnessoLock)
-                {
-                    return Connesso;
-                }
-            } set {
-                lock (ConnessoLock)
-                {
-                    Connesso = value;
-                }
-            } }
-        public bool AspettoRispostaConnesione
-        {
-            get
-            {
-                lock (AspettoLock)
-                {
-                    return AspettoRispostaConnesione;
-                }
-            }
-            set
-            {
-                lock (AspettoLock)
-                {
-                    AspettoRispostaConnesione = value;
-                }
-            }
-        }
-        public bool RispostaConnesione
-        {
-            get
-            {
-                lock (RispostaLock)
-                {
-                    return RispostaConnesione;
-                }
-            }
-            set
-            {
-                lock (RispostaLock)
-                {
-                    RispostaConnesione = value;
-                }
-            }
-        }
-        public bool VuoleConnetersi
-        {
-            get
-            {
-                lock (AspettoLock)
-                {
-                    return VuoleConnetersi;
-                }
-            }
-            set
-            {
-                lock (AspettoLock)
-                {
-                    VuoleConnetersi = value;
-                }
-            }
-        }
-        public string IpDestinatario
-        {
-            get
-            {
-                lock (IpDestLock)
-                {
-                    return IpDestinatario;
-                }
-            }
-            set
-            {
-                lock (IpDestLock)
-                {
-                    IpDestinatario = value;
-                }
-            }
-        }
-        public string IpVuoleConnetersi
-        {
-            get
-            {
-                lock (IpVuolConnLock)
-                {
-                    return IpVuoleConnetersi;
-                }
-            }
-            set
-            {
-                lock (IpVuolConnLock)
-                {
-                    IpVuoleConnetersi = value;
-                }
-            }
-        }
-
         //lock
         private readonly object DaInviareLock = new object();
         private readonly object clientLock = new object();
@@ -117,6 +15,116 @@ namespace ChatP2P
         private readonly object RispostaLock = new object();
         private readonly object IpDestLock = new object();
         private readonly object IpVuolConnLock = new object();
+        //variabili
+        private List<string> DaInviare;
+        private List<string> client;
+        private List<string> server;
+        private bool _Connesso;
+        private bool _AspettoRispostaConnesione;
+        private bool _RispostaConnesione;
+        private bool _VuoleConnetersi;
+        private string _IpDestinatario;
+        private string _IpVuoleConnetersi;
+
+        public bool Connesso { get
+            {
+                lock (ConnessoLock)
+                {
+                    return _Connesso;
+                }
+            } set {
+                lock (ConnessoLock)
+                {
+                    _Connesso = value;
+                }
+            } } 
+        public bool AspettoRispostaConnesione
+        {
+            get
+            {
+                lock (AspettoLock)
+                {
+                    return _AspettoRispostaConnesione;
+                }
+            }
+            set
+            {
+                lock (AspettoLock)
+                {
+                    _AspettoRispostaConnesione = value;
+                }
+            }
+        }
+        public bool RispostaConnesione
+        {
+            get
+            {
+                lock (RispostaLock)
+                {
+                    return _RispostaConnesione;
+                }
+            }
+            set
+            {
+                lock (RispostaLock)
+                {
+                    _RispostaConnesione = value;
+                }
+            }
+        }
+        public bool VuoleConnetersi
+        {
+            get
+            {
+                lock (AspettoLock)
+                {
+                    return _VuoleConnetersi;
+                }
+            }
+            set
+            {
+                lock (AspettoLock)
+                {
+                    _VuoleConnetersi = value;
+                }
+            }
+        }
+        public string IpDestinatario
+        {
+            get
+            {
+                lock (IpDestLock)
+                {
+                    return _IpDestinatario;
+                }
+            }
+            set
+            {
+                lock (IpDestLock)
+                {
+                    _IpDestinatario = value;
+                }
+            }
+        }
+        public string IpVuoleConnetersi
+        {
+            get
+            {
+                lock (IpVuolConnLock)
+                {
+                    return _IpVuoleConnetersi;
+                }
+            }
+            set
+            {
+                lock (IpVuolConnLock)
+                {
+                    _IpVuoleConnetersi = value;
+                }
+            }
+        }
+
+        
 
 
         public DatiCondivisi()
@@ -171,6 +179,13 @@ namespace ChatP2P
             lock (serverLock)
             {
                 return server.Count;
+            }
+        }
+        public void addDaInviare(string s)
+        {
+            lock (DaInviareLock)
+            {
+                DaInviare.Add(s);
             }
         }
 

@@ -15,45 +15,49 @@ namespace ChatP2P
         public void ProcWorkListener()
         {
             int count = 0;
-            string []s;
-            if(Dati.getLeghtserver()>0)
+            string[] s;
+            while (true)
             {
-                s = Dati.getserver(count).Split(";");
-                switch (s[0])
+                if (Dati.getLeghtserver() > 0)
                 {
-                    case "c":
-                        if (!Dati.AspettoRispostaConnesione)
-                            if (!Dati.Connesso)
+                    s = Dati.getserver(count).Split(";");
+                    switch (s[0])
+                    {
+                        case "c":
+                            if (!Dati.AspettoRispostaConnesione)
+                                if (!Dati.Connesso)
+                                {
+                                    Dati.VuoleConnetersi = true;
+                                    Dati.IpVuoleConnetersi = s[1];
+                                }
+                            break;
+                        case "y":
+                            if (Dati.AspettoRispostaConnesione)
+                                Dati.Connesso = true;
+                            break;
+                        case "n":
+                            if (!Dati.AspettoRispostaConnesione)
                             {
-                                Dati.VuoleConnetersi = true;
-                                Dati.IpVuoleConnetersi = s[1];
+                                Dati.AspettoRispostaConnesione = false;
+                                Dati.RispostaConnesione = false;
+                                Dati.Connesso = false;
+                                Dati.IpDestinatario = "";
                             }
-                        break;
-                    case "y":
-                        if (Dati.AspettoRispostaConnesione)
-                            Dati.Connesso = true;
-                        break;
-                    case "n":
-                        if (!Dati.AspettoRispostaConnesione)
-                        {
-                            Dati.AspettoRispostaConnesione = false;
-                            Dati.RispostaConnesione = false;
-                            Dati.Connesso = false;
-                            Dati.IpDestinatario = "";
-                        }
-                        break;
-                    case "m":
-                        if (Dati.Connesso)
-                        {
-                            Dati.addclient(s[1]);
-                        }
-                        break;
-                    case "d":
-                        if (Dati.Connesso)
-                        {
-                            Dati.Connesso = false;
-                        }
-                        break;
+                            break;
+                        case "m":
+                            if (Dati.Connesso)
+                            {
+                                Dati.addclient(s[1]);
+                            }
+                            break;
+                        case "d":
+                            if (Dati.Connesso)
+                            {
+                                Dati.Connesso = false;
+                            }
+                            break;
+                    }
+                    count++;
                 }
             }
         }

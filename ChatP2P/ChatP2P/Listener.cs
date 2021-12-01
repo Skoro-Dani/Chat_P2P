@@ -9,22 +9,25 @@ namespace ChatP2P
     class Listener
     {
         private DatiCondivisi Dati;
-        private UdpClient Server = new UdpClient();
-        private IPEndPoint riceveEP;
+        UdpClient Server = new UdpClient();
+        IPEndPoint riceveEP = new IPEndPoint(IPAddress.Any, 12345);
+
         private byte[] dataReceived;
         public Listener(DatiCondivisi dati)
         {
             Dati = dati;
-            riceveEP = new IPEndPoint(IPAddress.Any, 0);
         }
 
         public void ProcListener()
         {
-            while(true)
+            
+            
+            while (true)
             {
+                Server.Client.Bind(riceveEP);
                 dataReceived = Server.Receive(ref riceveEP);
                 string risposta = Encoding.ASCII.GetString(dataReceived);
-                Dati.addserver(risposta);
+                Dati.addserver(risposta+";"+riceveEP.Address);
                 Console.WriteLine(risposta);
             }
         }

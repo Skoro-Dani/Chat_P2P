@@ -21,7 +21,7 @@ namespace ChatP2P
             int count = 0;
             while (true)
             {
-                if (Dati.getLenghtDaInviare() > 0)
+                if (Dati.getLenghtDaInviare() > count)
                 {
                     data = Encoding.ASCII.GetBytes(Dati.getDaInviare(count));
                     client.Send(data, data.Length, Dati.IpDestinatario, 12345);
