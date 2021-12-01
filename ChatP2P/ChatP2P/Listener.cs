@@ -18,17 +18,16 @@ namespace ChatP2P
             Dati = dati;
         }
 
-        public void ProcListener()
+        public void ProcThread()
         {
-            
-            
+
+            Server.Client.Bind(riceveEP);
             while (true)
             {
-                Server.Client.Bind(riceveEP);
-                dataReceived = Server.Receive(ref riceveEP);
-                string risposta = Encoding.ASCII.GetString(dataReceived);
-                Dati.addserver(risposta+";"+riceveEP.Address);
-                Console.WriteLine(risposta);
+                    dataReceived = Server.Receive(ref riceveEP);
+                    string risposta = Encoding.ASCII.GetString(dataReceived);
+                    Dati.addserver(risposta + ";" + riceveEP.Address);
+                    Console.WriteLine(risposta);
             }
         }
     }

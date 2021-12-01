@@ -12,13 +12,13 @@ namespace ChatP2P
             Dati=dati;
         }
 
-        public void ProcWorkListener()
+        public void ProcThread()
         {
             int count = 0;
             string[] s;
             while (true)
             {
-                if (Dati.getLeghtserver() > 0)
+                if (Dati.getLeghtserver() > count)
                 {
                     s = Dati.getserver(count).Split(";");
                     switch (s[0])
@@ -30,6 +30,11 @@ namespace ChatP2P
                                     Dati.VuoleConnetersi = true;
                                     Dati.IpVuoleConnetersi = s[1];
                                 }
+                            if(s[2]== "127.0.0.1" || s[2]=="localhost")
+                            {
+                                Dati.Connesso = true;
+                                Dati.IpDestinatario= "localhost";
+                            }
                             break;
                         case "y":
                             if (Dati.AspettoRispostaConnesione)
@@ -54,6 +59,7 @@ namespace ChatP2P
                             if (Dati.Connesso)
                             {
                                 Dati.Connesso = false;
+                                Dati.IpDestinatario = "";
                             }
                             break;
                     }
