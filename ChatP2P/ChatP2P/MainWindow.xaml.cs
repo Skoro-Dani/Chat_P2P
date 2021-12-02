@@ -31,6 +31,7 @@ namespace ChatP2P
         Thread WLT;
         Thread WT;
         Thread RGT;
+
         public MainWindow()
         {
             Dati = new DatiCondivisi();
@@ -45,12 +46,13 @@ namespace ChatP2P
             LT.IsBackground = true;
             WLT.IsBackground = true;
             WT.IsBackground = true;
-            RGT.IsBackground = true;
+            RGT.IsBackground = false;
             LT.Start();
             WLT.Start();
             WT.Start();
             RGT.Start();
             InitializeComponent();
+
         }
 
         private void BTTN_Collegamento_Click(object sender, RoutedEventArgs e)
@@ -58,24 +60,34 @@ namespace ChatP2P
             Dati.addDaInviare("c;" + "daniel");
             Dati.IpDestinatario = TXT_Destinatario.Text;
             Dati.AspettoRispostaConnesione = true;
+            TXT_MDest.Content = "Messaggi ricevut:";
+            TXT_MMitt.Content = "Messaggi inviati:";
         }
 
         private void BTTN_ChiusuraCollegamento_Click(object sender, RoutedEventArgs e)
         {
             Dati.addDaInviare("d;");
             Dati.Connesso = false;
+            MessageBox.Show("Ti sei scollegato");
+
         }
 
         private void BTTN_Send_Click(object sender, RoutedEventArgs e)
         {
             Dati.addDaInviare("m;" + TXT_Messaggio.Text);
-            TXT_MMitt.Text += "\n\r" + TXT_Messaggio.Text;
+            TXT_MMitt.Content += "\n" + TXT_Messaggio.Text;
         }
 
-        private void addTXT_Destinatario(string s)
+        public void addTXT_Destinatario(string s)
         {
-            TXT_MDest.Text += "\n\r" + s;
+            Dispatcher.Invoke(() =>
+            {
+                TXT_MDest.Content += "\n" + s;
+            });
+            
         }
+
+
 
 
 

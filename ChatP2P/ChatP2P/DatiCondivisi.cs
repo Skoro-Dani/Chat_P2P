@@ -16,7 +16,6 @@ namespace ChatP2P
         private readonly object IpDestLock = new object();
         private readonly object IpVuolConnLock = new object();
         //variabili
-        public MainWindow window;
         private List<string> DaInviare;
         private List<string> client;
         private List<string> server;
@@ -138,7 +137,6 @@ namespace ChatP2P
             VuoleConnetersi = false;
             IpDestinatario = "";
             IpVuoleConnetersi = "";
-            window = new MainWindow();
         }
         public string getDaInviare(int pos)
         {

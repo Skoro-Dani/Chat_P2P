@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Threading;
 
 namespace ChatP2P
 {
@@ -21,7 +22,7 @@ namespace ChatP2P
             {
                 if(Dati.getLeghtclient()>count)
                 {
-                    Window.TXT_MMitt.Text += Dati.getclient(count);
+                    Window.addTXT_Destinatario(Dati.getclient(count));
                     count++;
                 }
             }
