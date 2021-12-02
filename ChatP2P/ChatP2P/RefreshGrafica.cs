@@ -20,7 +20,7 @@ namespace ChatP2P
             int count = 0;
             string s = "";
             string[] ss;
-            while (true)
+            while (true && Dati.w!=null)
             {
                 if(Dati.getLeghtclient()>count)
                 {

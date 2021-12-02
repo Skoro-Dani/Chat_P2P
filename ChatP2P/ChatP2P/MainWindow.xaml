@@ -14,8 +14,10 @@
         <Button x:Name="BTTN_Collegamento" Content="Collagemento" HorizontalAlignment="Left" Margin="353,14,0,0" VerticalAlignment="Top" Width="131" Click="BTTN_Collegamento_Click"/>
         <Button x:Name="BTTN_Send" Content="Invio" HorizontalAlignment="Left" Margin="437,385,0,0" VerticalAlignment="Top" Width="296" Click="BTTN_Send_Click"/>
         <Button x:Name="BTTN_ChiusuraCollegamento" Content="Esci Dalla Chat" HorizontalAlignment="Left" Margin="35,385,0,0" VerticalAlignment="Top" Width="296" Click="BTTN_ChiusuraCollegamento_Click"/>
-        <Label x:Name="TXT_MDest" Content="Messaggi:" HorizontalAlignment="Left" Margin="35,55,0,0" VerticalAlignment="Top" Height="246" Width="296"/>
-        <Label x:Name="TXT_MMitt" Content="Messaggi:" HorizontalAlignment="Left" Margin="437,60,0,0" VerticalAlignment="Top" Height="246" Width="296"/>
+        <Label x:Name="TXT_MDest" Content="Messaggi ricevut:" HorizontalAlignment="Left" Margin="35,55,0,0" VerticalAlignment="Top" Height="246" Width="296"/>
+        <Label x:Name="TXT_MMitt" Content="Messaggi inviati:" HorizontalAlignment="Left" Margin="437,60,0,0" VerticalAlignment="Top" Height="246" Width="296"/>
+        <Rectangle HorizontalAlignment="Left" Height="251" Margin="35,55,0,0" Stroke="Black" VerticalAlignment="Top" Width="296"/>
+        <Rectangle HorizontalAlignment="Left" Height="250" Margin="437,58,0,0" Stroke="Black" VerticalAlignment="Top" Width="296"/>
 
     </Grid>
 </Window>

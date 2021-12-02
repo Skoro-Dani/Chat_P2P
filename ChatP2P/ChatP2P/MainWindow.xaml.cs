@@ -34,7 +34,7 @@ namespace ChatP2P
 
         public MainWindow()
         {
-            Dati = new DatiCondivisi();
+            Dati = new DatiCondivisi(this);
             L = new Listener(Dati);
             WL = new WorkListener(Dati);
             W = new Writer(Dati);
@@ -56,7 +56,7 @@ namespace ChatP2P
 
         private void BTTN_Collegamento_Click(object sender, RoutedEventArgs e)
         {
-            Dati.addDaInviare("c;" + "daniel");
+            Dati.addDaInviare("c;" + "Skoro");
             Dati.IpDestinatario = TXT_Destinatario.Text;
             Dati.AspettoRispostaConnesione = true;
             TXT_MDest.Content = "Messaggi ricevut:";

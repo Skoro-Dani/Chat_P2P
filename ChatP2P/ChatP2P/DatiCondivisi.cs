@@ -15,29 +15,54 @@ namespace ChatP2P
         private readonly object RispostaLock = new object();
         private readonly object IpDestLock = new object();
         private readonly object IpVuolConnLock = new object();
+        private readonly object WindowLock = new object();
         //variabili
         private List<string> DaInviare;
         private List<string> client;
         private List<string> server;
         private bool _Connesso;
         private bool _AspettoRispostaConnesione;
-        private bool _RispostaConnesione;
+        //private bool _RispostaConnesione;
         private bool _VuoleConnetersi;
         private string _IpDestinatario;
         private string _IpVuoleConnetersi;
+        private MainWindow _w;
 
-        public bool Connesso { get
+        public MainWindow w
+        {
+            get
+            {
+                lock (WindowLock)
+                {
+                    return _w;
+                }
+            }
+            set
+            {
+                lock(WindowLock)
+                {
+                    _w = w;
+                }
+            }
+        }
+
+        public bool Connesso
+        {
+            get
             {
                 lock (ConnessoLock)
                 {
                     return _Connesso;
                 }
-            } set {
+            }
+            set
+            {
                 lock (ConnessoLock)
                 {
                     _Connesso = value;
                 }
-            } } 
+            }
+        }
         public bool AspettoRispostaConnesione
         {
             get
@@ -55,7 +80,7 @@ namespace ChatP2P
                 }
             }
         }
-        public bool RispostaConnesione
+        /*public bool RispostaConnesione
         {
             get
             {
@@ -71,7 +96,7 @@ namespace ChatP2P
                     _RispostaConnesione = value;
                 }
             }
-        }
+        }*/
         public bool VuoleConnetersi
         {
             get
@@ -124,10 +149,10 @@ namespace ChatP2P
             }
         }
 
-        
 
 
-        public DatiCondivisi()
+
+        public DatiCondivisi(MainWindow window)
         {
             client = new List<string>();
             server = new List<string>();
@@ -137,6 +162,7 @@ namespace ChatP2P
             VuoleConnetersi = false;
             IpDestinatario = "";
             IpVuoleConnetersi = "";
+            w = window;
         }
         public string getDaInviare(int pos)
         {
@@ -148,7 +174,7 @@ namespace ChatP2P
 
         public string getclient(int pos)
         {
-            lock(clientLock)
+            lock (clientLock)
             {
                 return client[pos];
             }

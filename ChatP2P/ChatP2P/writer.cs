@@ -19,7 +19,7 @@ namespace ChatP2P
         public void ProcThread()
         {
             int count = 0;
-            while (true)
+            while (true && Dati.w != null)
             {
                 if (Dati.getLenghtDaInviare() > count)
                 {

@@ -16,7 +16,7 @@ namespace ChatP2P
         {
             int count = 0;
             string[] s;
-            while (true)
+            while (true && Dati.w != null)
             {
                 if (Dati.getLeghtserver() > count)
                 {
@@ -39,13 +39,15 @@ namespace ChatP2P
                             break;
                         case "y":
                             if (Dati.AspettoRispostaConnesione)
+                            {
                                 Dati.Connesso = true;
+                                Dati.AspettoRispostaConnesione = false;
+                            }
                             break;
                         case "n":
                             if (!Dati.AspettoRispostaConnesione)
                             {
                                 Dati.AspettoRispostaConnesione = false;
-                                Dati.RispostaConnesione = false;
                                 Dati.Connesso = false;
                                 Dati.IpDestinatario = "";
                             }

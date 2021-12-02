@@ -20,14 +20,13 @@ namespace ChatP2P
 
         public void ProcThread()
         {
-
             Server.Client.Bind(riceveEP);
-            while (true)
+            while (true && Dati.w != null)
             {
-                    dataReceived = Server.Receive(ref riceveEP);
-                    string risposta = Encoding.ASCII.GetString(dataReceived);
-                    Dati.addserver(risposta + ";" + riceveEP.Address);
-                    Console.WriteLine(risposta);
+                dataReceived = Server.Receive(ref riceveEP);
+                string risposta = Encoding.ASCII.GetString(dataReceived);
+                Dati.addserver(risposta + ";" + riceveEP.Address);
+                Console.WriteLine(risposta);
             }
         }
     }
