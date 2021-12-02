@@ -31,20 +31,18 @@ namespace ChatP2P
         Thread WLT;
         Thread WT;
         Thread RGT;
-        private readonly object TXT_lock = new object();
         public MainWindow()
         {
-            InitializeComponent();
             Dati = new DatiCondivisi();
             L = new Listener(Dati);
             WL = new WorkListener(Dati);
             W = new Writer(Dati);
-            RG = new RefreshGrafica(Dati,this);
+            RG = new RefreshGrafica(Dati, this);
             LT = new Thread(new ThreadStart(L.ProcThread));
             WLT = new Thread(new ThreadStart(WL.ProcThread));
             WT = new Thread(new ThreadStart(W.ProcThread));
             RGT = new Thread(new ThreadStart(RG.ProcThread));
-            LT.IsBackground = false;
+            LT.IsBackground = true;
             WLT.IsBackground = true;
             WT.IsBackground = true;
             RGT.IsBackground = true;
@@ -52,6 +50,7 @@ namespace ChatP2P
             WLT.Start();
             WT.Start();
             RGT.Start();
+            InitializeComponent();
         }
 
         private void BTTN_Collegamento_Click(object sender, RoutedEventArgs e)
@@ -72,11 +71,13 @@ namespace ChatP2P
             Dati.addDaInviare("m;" + TXT_Messaggio.Text);
             TXT_MMitt.Text += "\n\r" + TXT_Messaggio.Text;
         }
-        public void AddTXT_Destinatario(string s)
+
+        private void addTXT_Destinatario(string s)
         {
-            lock (TXT_lock) { 
             TXT_MDest.Text += "\n\r" + s;
-                }
         }
+
+
+
     }
 }

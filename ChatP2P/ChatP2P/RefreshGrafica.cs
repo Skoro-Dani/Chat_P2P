@@ -21,7 +21,7 @@ namespace ChatP2P
             {
                 if(Dati.getLeghtclient()>count)
                 {
-                    Window.AddTXT_Destinatario(Dati.getclient(count));
+                    Window.TXT_MMitt.Text += Dati.getclient(count);
                     count++;
                 }
             }

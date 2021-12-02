@@ -24,7 +24,6 @@ E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\bin\Debug\netcoreapp3.1\ChatP2P.r
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\bin\Debug\netcoreapp3.1\ChatP2P.runtimeconfig.dev.json
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\bin\Debug\netcoreapp3.1\ChatP2P.dll
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\bin\Debug\netcoreapp3.1\ChatP2P.pdb
-E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\ChatP2P.csproj.AssemblyReference.cache
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\App.g.cs
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\ChatP2P_MarkupCompile.cache
