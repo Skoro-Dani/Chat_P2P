@@ -52,7 +52,6 @@ namespace ChatP2P
             WT.Start();
             RGT.Start();
             InitializeComponent();
-
         }
 
         private void BTTN_Collegamento_Click(object sender, RoutedEventArgs e)
@@ -85,6 +84,27 @@ namespace ChatP2P
                 TXT_MDest.Content += "\n" + s;
             });
             
+        }
+        public void RichiediConnessione(string s)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                MessageBoxResult result = MessageBox.Show(s, "Richiesta Connessione", MessageBoxButton.YesNo);
+                if (result==MessageBoxResult.Yes)
+                {
+                    Dati.Connesso = true;
+                    Dati.IpDestinatario = Dati.IpVuoleConnetersi;
+                    Dati.IpVuoleConnetersi = "";
+                    Dati.VuoleConnetersi = false;
+                    Dati.AspettoRispostaConnesione = false;
+                    Dati.addDaInviare("y;Skoro");
+                }
+                else
+                {
+                    Dati.addDaInviare("n;");
+                }
+            });
+
         }
 
 

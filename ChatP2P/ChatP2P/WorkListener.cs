@@ -28,7 +28,8 @@ namespace ChatP2P
                                 if (!Dati.Connesso)
                                 {
                                     Dati.VuoleConnetersi = true;
-                                    Dati.IpVuoleConnetersi = s[1];
+                                    Dati.IpVuoleConnetersi = s[2];
+                                    Dati.addclient("C;" + s[1] + "Vuole connettersi, accetti?");
                                 }
                             if(s[2]== "127.0.0.1" || s[2]=="localhost")
                             {

@@ -18,11 +18,22 @@ namespace ChatP2P
         public void ProcThread()
         {
             int count = 0;
+            string s = "";
+            string[] ss;
             while (true)
             {
                 if(Dati.getLeghtclient()>count)
                 {
-                    Window.addTXT_Destinatario(Dati.getclient(count));
+                    s = Dati.getclient(count);
+                    ss = s.Split(";");
+                    if (ss[0] == "C")
+                    {
+                        Window.RichiediConnessione(ss[1]);
+                    }
+                    else
+                    {
+                        Window.addTXT_Destinatario(ss[0]);
+                    }
                     count++;
                 }
             }

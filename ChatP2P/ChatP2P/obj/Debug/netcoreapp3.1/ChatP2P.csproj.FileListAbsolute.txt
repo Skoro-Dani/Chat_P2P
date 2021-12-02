@@ -37,3 +37,4 @@ E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\ChatP2P.c
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\ChatP2P.dll
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\ChatP2P.pdb
 E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\ChatP2P.genruntimeconfig.cache
+E:\Skorolitniy\GitHub\Chat_P2P\ChatP2P\ChatP2P\obj\Debug\netcoreapp3.1\ChatP2P.csproj.AssemblyReference.cache
