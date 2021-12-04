@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -105,6 +106,19 @@ namespace ChatP2P
                 }
             });
 
+        }
+
+        public void Richiesta_ccettazioneConn()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                MessageBox.Show("Richiesta Connessione", "qualcuno si staconnentendo") ;
+            });
+        }
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+        {
+            Dati.flag = false;
         }
 
 

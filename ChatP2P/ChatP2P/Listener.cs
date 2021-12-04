@@ -21,7 +21,7 @@ namespace ChatP2P
         public void ProcThread()
         {
             Server.Client.Bind(riceveEP);
-            while (true && Dati.w != null)
+            while (Dati.flag)
             {
                 dataReceived = Server.Receive(ref riceveEP);
                 string risposta = Encoding.ASCII.GetString(dataReceived);

@@ -16,7 +16,7 @@ namespace ChatP2P
         {
             int count = 0;
             string[] s;
-            while (true && Dati.w != null)
+            while (Dati.flag)
             {
                 if (Dati.getLeghtserver() > count)
                 {
@@ -35,6 +35,10 @@ namespace ChatP2P
                             {
                                 Dati.Connesso = true;
                                 Dati.IpDestinatario= "localhost";
+                                Dati.VuoleConnetersi = false;
+                                Dati.IpVuoleConnetersi = "";
+                                Dati.AspettoRispostaConnesione = false;
+                                Dati.addclient("L;localhost");
                             }
                             break;
                         case "y":
@@ -42,14 +46,19 @@ namespace ChatP2P
                             {
                                 Dati.Connesso = true;
                                 Dati.AspettoRispostaConnesione = false;
+                                Dati.VuoleConnetersi = false;
+                                Dati.IpVuoleConnetersi = "";
+                                Dati.AspettoRispostaConnesione = false;
                             }
                             break;
                         case "n":
                             if (!Dati.AspettoRispostaConnesione)
                             {
-                                Dati.AspettoRispostaConnesione = false;
                                 Dati.Connesso = false;
                                 Dati.IpDestinatario = "";
+                                Dati.VuoleConnetersi = false;
+                                Dati.IpVuoleConnetersi = "";
+                                Dati.AspettoRispostaConnesione = false;
                             }
                             break;
                         case "m":
@@ -63,6 +72,9 @@ namespace ChatP2P
                             {
                                 Dati.Connesso = false;
                                 Dati.IpDestinatario = "";
+                                Dati.VuoleConnetersi = false;
+                                Dati.IpVuoleConnetersi = "";
+                                Dati.AspettoRispostaConnesione = false;
                             }
                             break;
                     }

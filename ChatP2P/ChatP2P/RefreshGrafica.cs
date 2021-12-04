@@ -20,7 +20,7 @@ namespace ChatP2P
             int count = 0;
             string s = "";
             string[] ss;
-            while (true && Dati.w!=null)
+            while (Dati.flag)
             {
                 if(Dati.getLeghtclient()>count)
                 {
@@ -30,7 +30,10 @@ namespace ChatP2P
                     {
                         Window.RichiediConnessione(ss[1]);
                     }
-                    else
+                    else if(ss[0] == "L")
+                    {
+                        Window.Richiesta_ccettazioneConn();
+                    }else
                     {
                         Window.addTXT_Destinatario(ss[0]);
                     }

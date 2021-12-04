@@ -16,6 +16,7 @@ namespace ChatP2P
         private readonly object IpDestLock = new object();
         private readonly object IpVuolConnLock = new object();
         private readonly object WindowLock = new object();
+        private readonly object FlagLock = new object();
         //variabili
         private List<string> DaInviare;
         private List<string> client;
@@ -26,6 +27,7 @@ namespace ChatP2P
         private bool _VuoleConnetersi;
         private string _IpDestinatario;
         private string _IpVuoleConnetersi;
+        private bool _flag;
         private MainWindow _w;
 
         public MainWindow w
@@ -45,7 +47,23 @@ namespace ChatP2P
                 }
             }
         }
-
+        public bool flag
+        {
+            get
+            {
+                lock (FlagLock)
+                {
+                    return _flag;
+                }
+            }
+            set
+            {
+                lock (FlagLock)
+                {
+                    _flag = value;
+                }
+            }
+        }
         public bool Connesso
         {
             get
@@ -163,6 +181,7 @@ namespace ChatP2P
             IpDestinatario = "";
             IpVuoleConnetersi = "";
             w = window;
+            flag = true;
         }
         public string getDaInviare(int pos)
         {
